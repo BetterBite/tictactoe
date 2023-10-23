@@ -18,14 +18,19 @@
             Console.WriteLine(String.Format("Player ", player, "'s turn."));
             while (true){
                 Console.WriteLine("Write position in form 'x,y'.");
-                string? coords = Console.ReadLine();
+                string? coords;
+                while (true) {
+                    coords = Console.ReadLine();
+                    if (coords == null) { Console.WriteLine("Please enter position coordinates."); continue; }
+                    break;
+                }
                 string[] inputs = coords.Split(',');
                 if (int.TryParse(inputs[0], out int x) && int.TryParse(inputs[1], out int y) && x > 0 && x < 4 && y > 0 && y < 4) { } else { Console.WriteLine("Both values have to be numbers between 1 and 3. Try again."); continue; };
                 switch (player) {
                     case 1:
-                        field.updateCell(int.Parse(inputs[0]), int.Parse(inputs[1]), 'O'); break;
+                        field.updateCell(int.Parse(inputs[0])-1, int.Parse(inputs[1])-1, 'O'); break;
                     case 2:
-                        field.updateCell(int.Parse(inputs[0]), int.Parse(inputs[1]), 'X'); break;
+                        field.updateCell(int.Parse(inputs[0])-1, int.Parse(inputs[1])-1, 'X'); break;
                 }
                 break;
             }
@@ -37,15 +42,14 @@
         /// <param name="player">Used to see if code should be looking for O or X</param>
         /// <returns>Returns true if someone won</returns>
         public bool checkForWinner(int player) {
-            //(Thanks ChatGPT for the uneeded suggestion. Slightly altered)
             char XorO = (player == 1) ? 'O' : 'X';
-            bool weHaveAWinner = true;
-            for (int i = 0; i < 3; i++) {
-                for (int j = 0; j < 3; j++) {
-                    if (field.getCellAt(i, j) != XorO) weHaveAWinner = false;
-                    if (field.getCellAt(j, i) != XorO) weHaveAWinner = false;
-                }
-                if (weHaveAWinner) return true;
+            //Check rows
+            for (int x = 0; x < 3; x++) {
+                if (field.getCellAt(x, 0) == XorO && field.getCellAt(x, 1) == XorO && field.getCellAt(x, 2) == XorO) { return true; }
+            }
+            //Check columns
+            for (int y = 0; y < 3; y++) {
+                if (field.getCellAt(0, y) == XorO && field.getCellAt(1, y) == XorO && field.getCellAt(2, y) == XorO) { return true; }
             }
             //Check diagonals
             if ((field.getCellAt(0, 0) == XorO && field.getCellAt(1, 1) == XorO && field.getCellAt(2, 2) == XorO) || (field.getCellAt(0, 2) == XorO && field.getCellAt(1, 1) == XorO && field.getCellAt(2, 0) == XorO)) return true;

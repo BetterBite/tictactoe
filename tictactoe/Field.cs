@@ -47,7 +47,7 @@ namespace tictactoe {
         /// <param name="XorO">'X' or 'O'</param>
         public void updateCell(int x, int y, char XorO) {
             if (!(XorO == 'X' || XorO == 'O')) throw new ArgumentException(String.Format("Did not receive an 'X' or a 'O'. Received instead: ", XorO));
-            else if (playingField[x, y] != ' ') throw new ArgumentException(String.Format("Trying to update an already filled cell! At:", x, "" ,y, "which has", playingField[x,y]));
+            else if (playingField[x, y] != ' ') throw new ArgumentException(String.Format("Trying to update an already filled cell! At:", x, "" ,y, "which has", playingField[x,y])); //TODO: User error must be caught!
             playingField[x,y] = XorO;
         } 
         /// <summary>
