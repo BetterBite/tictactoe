@@ -15,7 +15,6 @@
         /// </summary>
         /// <param name="player">If 1, use naughts. If 2, use crosses.</param>
         public bool doTurn(int player) {
-            Console.WriteLine(String.Format("Player ", player, "'s turn."));
             while (true){
                 Console.WriteLine("Write position in form 'x,y'.");
                 string? coords;

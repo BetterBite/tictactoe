@@ -46,8 +46,8 @@ namespace tictactoe {
         /// <param name="y">Y coordinate</param>
         /// <param name="XorO">'X' or 'O'</param>
         public void updateCell(int x, int y, char XorO) {
-            if (!(XorO == 'X' || XorO == 'O')) throw new ArgumentException(String.Format("Did not receive an 'X' or a 'O'. Received instead: ", XorO));
-            else if (playingField[x, y] != ' ') throw new ArgumentException(String.Format("Trying to update an already filled cell! At:", x, "" ,y, "which has", playingField[x,y])); //TODO: User error must be caught!
+            if (!(XorO == 'X' || XorO == 'O')) throw new ArgumentException(String.Format("Did not receive an 'X' or a 'O'. Received instead: {0}", XorO)); //Program error, don't catch
+            else if (playingField[x, y] != ' ') throw new ArgumentException(String.Format("Trying to update an already filled cell! At: {0},{1} which has {2}", x, y, playingField[x,y])); //TODO: User error must be caught!
             playingField[x,y] = XorO;
         } 
         /// <summary>
