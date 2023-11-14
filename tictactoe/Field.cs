@@ -47,8 +47,7 @@ namespace tictactoe {
         /// <param name="XorO">'X' or 'O'</param>
         public void updateCell(int x, int y, char XorO) {
             if (!(XorO == 'X' || XorO == 'O')) throw new ArgumentException(String.Format("Did not receive an 'X' or a 'O'. Received instead: {0}", XorO)); //Program error, don't catch
-            else if (playingField[x, y] != ' ') throw new ArgumentException(String.Format("Trying to update an already filled cell! At: {0},{1} which has {2}", x, y, playingField[x,y])); //TODO: User error must be caught!
-            playingField[x,y] = XorO;
+            playingField[y,x] = XorO;
         } 
         /// <summary>
         /// Clears the field of all naughts and crosses
@@ -63,7 +62,7 @@ namespace tictactoe {
         /// <param name="y">Y coordinate</param>
         /// <returns>Element at the coordinates given</returns>
         public char getCellAt(int x, int y) {
-            return playingField[x, y];
+            return playingField[y, x];
         }
     }
 }

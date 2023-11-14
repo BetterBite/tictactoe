@@ -25,6 +25,7 @@
                 }
                 string[] inputs = coords.Split(',');
                 if (int.TryParse(inputs[0], out int x) && int.TryParse(inputs[1], out int y) && x > 0 && x < 4 && y > 0 && y < 4) { } else { Console.WriteLine("Both values have to be numbers between 1 and 3. Try again."); continue; };
+                if (field.getCellAt(int.Parse(inputs[0])-1, int.Parse(inputs[1])-1) != ' ') { Console.WriteLine("That cell is already filled. Try again."); continue; }
                 switch (player) {
                     case 1:
                         field.updateCell(int.Parse(inputs[0])-1, int.Parse(inputs[1])-1, 'O'); break;
